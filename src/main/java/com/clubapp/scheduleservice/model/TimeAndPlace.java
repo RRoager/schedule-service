@@ -11,6 +11,7 @@ import java.time.LocalTime;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "time_and_places")
 public class TimeAndPlace {
 
     @Id

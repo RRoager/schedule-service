@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "seasons")
 public class Season {
 
     @Id
