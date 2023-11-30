@@ -25,8 +25,8 @@ import java.time.LocalTime;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "time_and_places")
-public class TimeAndPlace {
+@Table(name = "times")
+public class TimeSlot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +37,6 @@ public class TimeAndPlace {
     private Instant lastUpdatedOn;
     private LocalTime startTime;
     private LocalTime endTime;
-    private String location;
     private String day;
     @ManyToOne
     @JoinColumn(name="schedule_id", nullable=false)

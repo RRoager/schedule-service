@@ -1,12 +1,11 @@
 package com.clubapp.scheduleservice.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,8 +17,6 @@ import org.hibernate.annotations.SourceType;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
-import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Getter
@@ -27,25 +24,18 @@ import java.util.List;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "schedules")
-public class Schedule {
+@Table(name = "locations")
+public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long activityId;
     @CreationTimestamp(source = SourceType.DB)
     private Instant createdOn;
     @UpdateTimestamp(source = SourceType.DB)
     private Instant lastUpdatedOn;
-    private String name;
-    private String description;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)
-    private List<TimeSlot> timeSlots;
-    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)
-    private List<Location> locations;
-    @OneToOne(mappedBy = "schedule", cascade = CascadeType.ALL)
-    private Season season;
+    private String location;
+    @ManyToOne
+    @JoinColumn(name="schedule_id", nullable=false)
+    private Schedule schedule;
 }
